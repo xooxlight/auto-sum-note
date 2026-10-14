@@ -19,7 +19,9 @@ export default function NoteList({ notesHook }: Props) {
     <div className="page">
       <div className="page-header">
         <h2>Your Notes</h2>
-        <button onClick={handleCreate} className="btn primary">New Note</button>
+        <button onClick={handleCreate} className="btn primary">
+          New Note
+        </button>
       </div>
 
       {activeNotes.length === 0 ? (
@@ -28,7 +30,7 @@ export default function NoteList({ notesHook }: Props) {
         </div>
       ) : (
         <div className="note-grid">
-          {activeNotes.map(note => {
+          {activeNotes.map((note) => {
             const sum = calculateSum(note.content);
             const preview = getFirstLine(note.content);
             const dateStr = new Date(note.updatedAt).toLocaleDateString();

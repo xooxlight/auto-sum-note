@@ -13,7 +13,9 @@ export default function Trash({ notesHook }: Props) {
       <div className="page-header">
         <h2>Trash</h2>
         {trashedNotes.length > 0 && (
-          <button onClick={emptyTrash} className="btn danger">Empty Trash</button>
+          <button onClick={emptyTrash} className="btn danger">
+            Empty Trash
+          </button>
         )}
       </div>
 
@@ -23,15 +25,19 @@ export default function Trash({ notesHook }: Props) {
         </div>
       ) : (
         <div className="note-list">
-          {trashedNotes.map(note => (
+          {trashedNotes.map((note) => (
             <div key={note.id} className="trash-item">
               <div className="trash-item-info">
                 <strong>{getFirstLine(note.content)}</strong>
                 <span>{new Date(note.updatedAt).toLocaleString()}</span>
               </div>
               <div className="trash-item-actions">
-                <button onClick={() => restoreNote(note.id)} className="btn secondary">Restore</button>
-                <button onClick={() => deletePermanently(note.id)} className="btn danger">Delete Permanently</button>
+                <button onClick={() => restoreNote(note.id)} className="btn secondary">
+                  Restore
+                </button>
+                <button onClick={() => deletePermanently(note.id)} className="btn danger">
+                  Delete Permanently
+                </button>
               </div>
             </div>
           ))}

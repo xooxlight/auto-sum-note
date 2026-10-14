@@ -13,7 +13,7 @@ export default function NoteDetail({ notesHook }: Props) {
   const { getNote, updateNote, moveToTrash } = notesHook;
 
   const note = id ? getNote(id) : undefined;
-  
+
   const [content, setContent] = useState(note?.content || '');
 
   useEffect(() => {
@@ -27,8 +27,10 @@ export default function NoteDetail({ notesHook }: Props) {
       <div className="page">
         <div className="empty-state">
           <h2>Note not found</h2>
-          <br/>
-          <button onClick={() => navigate('/')} className="btn secondary">Back to Notes</button>
+          <br />
+          <button onClick={() => navigate('/')} className="btn secondary">
+            Back to Notes
+          </button>
         </div>
       </div>
     );
@@ -50,13 +52,17 @@ export default function NoteDetail({ notesHook }: Props) {
   return (
     <div className="page detail-page">
       <div className="detail-header">
-        <button onClick={() => navigate('/')} className="btn secondary">← Back</button>
+        <button onClick={() => navigate('/')} className="btn secondary">
+          ← Back
+        </button>
         <div className="detail-sum-display">
           Sum: <strong>{formatNumber(currentSum)}</strong>
         </div>
-        <button onClick={handleDelete} className="btn danger">Delete</button>
+        <button onClick={handleDelete} className="btn danger">
+          Delete
+        </button>
       </div>
-      
+
       <textarea
         className="note-editor"
         value={content}

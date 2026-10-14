@@ -21,12 +21,15 @@ export function useNotes() {
     localStorage.setItem(STORAGE_KEY, JSON.stringify(notes));
   }, [notes]);
 
-  const activeNotes = notes.filter(n => !n.isDeleted).sort((a, b) => b.updatedAt - a.updatedAt);
-  const trashedNotes = notes.filter(n => n.isDeleted).sort((a, b) => b.updatedAt - a.updatedAt);
+  const activeNotes = notes.filter((n) => !n.isDeleted).sort((a, b) => b.updatedAt - a.updatedAt);
+  const trashedNotes = notes.filter((n) => n.isDeleted).sort((a, b) => b.updatedAt - a.updatedAt);
 
-  const getNote = useCallback((id: string) => {
-    return notes.find(n => n.id === id);
-  }, [notes]);
+  const getNote = useCallback(
+    (id: string) => {
+      return notes.find((n) => n.id === id);
+    },
+    [notes],
+  );
 
   const addNote = useCallback(() => {
     const newNote: Note = {
@@ -36,34 +39,34 @@ export function useNotes() {
       updatedAt: Date.now(),
       isDeleted: false,
     };
-    setNotes(prev => [...prev, newNote]);
+    setNotes((prev) => [...prev, newNote]);
     return newNote.id;
   }, []);
 
   const updateNote = useCallback((id: string, content: string) => {
-    setNotes(prev => prev.map(n => 
-      n.id === id ? { ...n, content, updatedAt: Date.now() } : n
-    ));
+    setNotes((prev) =>
+      prev.map((n) => (n.id === id ? { ...n, content, updatedAt: Date.now() } : n)),
+    );
   }, []);
 
   const moveToTrash = useCallback((id: string) => {
-    setNotes(prev => prev.map(n => 
-      n.id === id ? { ...n, isDeleted: true, updatedAt: Date.now() } : n
-    ));
+    setNotes((prev) =>
+      prev.map((n) => (n.id === id ? { ...n, isDeleted: true, updatedAt: Date.now() } : n)),
+    );
   }, []);
 
   const restoreNote = useCallback((id: string) => {
-    setNotes(prev => prev.map(n => 
-      n.id === id ? { ...n, isDeleted: false, updatedAt: Date.now() } : n
-    ));
+    setNotes((prev) =>
+      prev.map((n) => (n.id === id ? { ...n, isDeleted: false, updatedAt: Date.now() } : n)),
+    );
   }, []);
 
   const deletePermanently = useCallback((id: string) => {
-    setNotes(prev => prev.filter(n => n.id !== id));
+    setNotes((prev) => prev.filter((n) => n.id !== id));
   }, []);
 
   const emptyTrash = useCallback(() => {
-    setNotes(prev => prev.filter(n => !n.isDeleted));
+    setNotes((prev) => prev.filter((n) => !n.isDeleted));
   }, []);
 
   return {
@@ -76,6 +79,6 @@ export function useNotes() {
     moveToTrash,
     restoreNote,
     deletePermanently,
-    emptyTrash
+    emptyTrash,
   };
 }

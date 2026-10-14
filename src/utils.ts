@@ -13,7 +13,10 @@ export function calculateSum(text: string): number {
 
 export function getFirstLine(text: string): string {
   if (!text) return 'Empty Note';
-  const lines = text.split('\n').map(line => line.trim()).filter(line => line.length > 0);
+  const lines = text
+    .split('\n')
+    .map((line) => line.trim())
+    .filter((line) => line.length > 0);
   return lines.length > 0 ? lines[0] : 'Empty Note';
 }
 

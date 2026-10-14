@@ -12,8 +12,12 @@ export default function App() {
       <header className="app-header">
         <h1>AutoSumNote</h1>
         <nav className="nav-links">
-          <NavLink to="/" end className={({ isActive }) => isActive ? 'active' : ''}>Notes</NavLink>
-          <NavLink to="/trash" className={({ isActive }) => isActive ? 'active' : ''}>Trash</NavLink>
+          <NavLink to="/" end className={({ isActive }) => (isActive ? 'active' : '')}>
+            Notes
+          </NavLink>
+          <NavLink to="/trash" className={({ isActive }) => (isActive ? 'active' : '')}>
+            Trash
+          </NavLink>
         </nav>
       </header>
       <main className="app-main">
